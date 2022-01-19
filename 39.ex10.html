@@ -49,22 +49,28 @@
         </div>
       </div>
     </div>
-  </body>
-  <script src="./js/jquery-3.6.0.js"></script>
-  <script>
-    console.log($(".color-circle").css("background-color"));
-        var style = {
-        background: "#87cefa",
-      };
-      var style2 = {
-        background: "#ffa07a",
-      };
 
-      $(".color-circle:eq(0)").click(function () {
-        $(".color-demo-area").css(style);
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+      // $(".color-circle").click(function () {
+      //   console.log("hi", $(this));
+      //   console.log("hi", $(this).css("background-color"));
+      //   $(".color-demo-area").css(
+      //     "background-color",
+      //     $(this).css("background-color")
+      //   );
+      // });
+      const circle = document.querySelectorAll(".color-circle");
+      console.log("circle", circle);
+
+      circle.forEach((element) => {
+        element.addEventListener("click", function () {
+          console.log("hi", this);
+          console.log("hi", this.style.backgroundColor);
+          console.log("hi", getComputedStyle(this).backgroundColor);
+          // this.style.backgroundColor = "red";
+        });
       });
-      $(".color-circle:eq(1)").click(function () {
-        $(".color-demo-area").css(style2);
-      });
-  </script>
+    </script>
+  </body>
 </html>
