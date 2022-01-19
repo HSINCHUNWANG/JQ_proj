@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap-4.6.1-dist/css/bootstrap.min.css">
+    <style>
+        .wrap{
+            display: flex;
+        }
+
+        .circle{
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin:10px auto;    
+        }
+        .circle img{
+            width: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+        <div class="wrap">
+            <div class="circle a1">
+                <img src="./imgs/person1.jpg">
+            </div>
+            <div class="circle a2">
+                <img src="./imgs/person2.jpg">
+            </div>
+            <div class="circle a3">
+                <img src="./imgs/person3.jpg">
+            </div>
+            <div class="circle a4">
+                <img src="./imgs/person4.jpg">
+            </div>
+            <div class="circle a5">
+                <img src="./imgs/person5.jpg">
+            </div>
+        </div>
+    
+
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script src="./bootstrap-4.6.1-dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(".circle").click(function () {
+            $(this).css("outline", "5px solid red").siblings().css("outline", "transparent");
+        });    
+    </script>
+</body>
+</html>
