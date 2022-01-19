@@ -10,7 +10,7 @@
       href="./bootstrap-4.6.1-dist/css/bootstrap.min.css"
     />
   </head>
-  <!-- <style>
+  <style>
     .fontS {
       font-size: 0.8rem;
     }
@@ -20,14 +20,14 @@
     .fontL {
       font-size: 1.2rem;
     }
-  </style> -->
+  </style>
   <body>
     <div class="container">
       <div class="row justify-content-end">
         <div class="btn-group">
-          <div class="btn btn-info fontS">S</div>
-          <div class="btn btn-info fontM">M</div>
-          <div class="btn btn-info fontL">L</div>
+          <div class="btn btn-info">S</div>
+          <div class="btn btn-info active">M</div>
+          <div class="btn btn-info">L</div>
         </div>
       </div>
       <h2>jQuery</h2>
@@ -44,25 +44,27 @@
         minus rem.
       </p>
     </div>
+
     <script src="./js/jquery-3.6.0.js"></script>
     <script>
-          $(".btn").click(function () {
-        console.log("hi", $(this).hasClass("btn-info"));
-        if ($(this).hasClass("btn-info")) {
-          $(this).addClass("active").siblings().removeClass("active");
+      $(".btn").click(function () {
+        // console.log("hi", $(this));
+        if ($(this).is(":contains('S')")) {
+          console.log("s");
+          $("p").removeClass();
+          $("p").addClass("fontS");
+          $(".btn").removeClass("active");
+          $(this).addClass("active");
         }
-      });
-      
-        $(".fontS").click(function () {
-        $("p").css("font-size", "0.8rem");
-      });
-
-        $(".fontM").click(function () {
-        $("p").css("font-size", "1rem");
-      });
-
-        $(".fontL").click(function () { 
-        $("p").css("font-size", "1.2rem");
+        if ($(this).is(":contains('M')")) {
+          console.log("m");
+          $("p").addClass("fontM");
+        }
+        if ($(this).is(":contains('L')")) {
+          console.log("l");
+          $("p").addClass("fontL");
+          $(this).addClass("active");
+        }
       });
     </script>
   </body>
