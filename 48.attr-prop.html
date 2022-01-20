@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>attr prop</title>
+  </head>
+  <body>
+    <button id="getAttr">get attr</button>
+    <button id="rmAttr">rm attr</button>
+    <button id="setAttr">set attr</button>
+    <button id="getProp">get prop</button>
+    <button id="setProp">set prop</button>
+    <button id="rmProp">rm prop</button>
+    <input type="checkbox" id="check1" />
+
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+      $("#getAttr").click(function () {
+        console.log($("#check1").attr("checked"));
+      });
+
+      $("#rmAttr").click(function () {
+        $("#check1").removeAttr("checked");
+      });
+
+      $("#setAttr").click(function () {
+        $("#check1").attr("checked", true);
+      });
+
+      $("#getProp").click(function () {
+        console.log("prop:", $("#check1").prop("myProp123"));
+      });
+
+      $("#setProp").click(function () {
+        // $("#check1").prop("disabled", true);
+        $("#check1").prop("myProp123", "hello");
+      });
+
+      $("#rmProp").click(function () {
+        // $("#check1").prop("disabled", true);
+        $("#check1").removeProp("myProp123");
+      });
+    </script>
+  </body>
+</html>
