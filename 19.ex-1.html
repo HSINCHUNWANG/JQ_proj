@@ -36,7 +36,9 @@
             <td></td>
           </tr>
           <tr>
-            <td><input type="checkbox" /></td>
+            <td>
+              <input type="checkbox" />
+            </td>
             <td></td>
             <td></td>
             <td></td>
@@ -49,8 +51,19 @@
     <script src="./js/jquery-3.6.0.js"></script>
     <script>
       $("input").click(function () {
-        console.log("hi", $(this));
-        $(this).css("background", "lightblue");
+        // console.log("hi", $(this).attr("checked"));
+        // console.log("hi", $(this).prop("checked"));
+        // // $(this).css("background", "lightblue");
+        // if ($(this).prop("checked")) {
+        //   $(this).closest("tr").css("background", "lightblue");
+        // } else {
+        //   $(this).closest("tr").css("background", "transparent");
+        // }
+      });
+      $("input").click(function () {
+        $("tr").css("background", "transparent");
+
+        $("input:checked").closest("tr").css("background", "lightblue");
       });
     </script>
   </body>
