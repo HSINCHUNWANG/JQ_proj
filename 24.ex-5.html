@@ -28,7 +28,7 @@
 
       ul.img-wrap {
         display: flex;
-        width: 4000px;
+        width: 4800px;
         transition: 0.5s;
         transform: translateX(0px);
       }
@@ -60,17 +60,26 @@
         background: #fff;
       }
 
-      #btn-left-area {
+      #btn-left-area,
+      #btn-right-area {
         position: absolute;
         top: 0;
         bottom: 0;
-        left: 0;
         width: 10%;
-        /* background-color: rgba(250, 116, 116, 0.424); */
+        background-color: rgba(250, 116, 116, 0.424);
         cursor: pointer;
       }
 
-      .fa-chevron-left {
+      #btn-left-area {
+        left: 0;
+      }
+
+      #btn-right-area {
+        right: 0;
+      }
+
+      .fa-chevron-left,
+      .fa-chevron-right {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -86,6 +95,7 @@
         <li><img src="./imgs/slide3.jpg" alt="" /></li>
         <li><img src="./imgs/slide4.jpg" alt="" /></li>
         <li><img src="./imgs/slide5.jpg" alt="" /></li>
+        <li><img src="./imgs/slide1.jpg" alt="" /></li>
       </ul>
 
       <ul class="slider-dots">
@@ -99,12 +109,19 @@
       <div id="btn-left-area">
         <i class="fas fa-chevron-left"></i>
       </div>
+      <div id="btn-right-area">
+        <i class="fas fa-chevron-right"></i>
+      </div>
     </div>
 
     <script src="./js/jquery-3.6.0.js"></script>
     <script>
+      let page = 0;
+      let myInterval = null;
+
       $(".slider-dots li").hover(function () {
         console.log("this", $(this).index());
+        page = $(this).index();
         $(this)
           .css("background", "#fff")
           .siblings()
@@ -127,6 +144,63 @@
       $("#btn-left-area").click(function () {
         console.log("btn-left-area clicked");
       });
+
+      $("#btn-right-area").click(function () {
+        page++;
+        console.log("btn-right-area clicked", page);
+        if (page >= 5) page = 0;
+        console.log("btn-right-area clicked new page:", page);
+        const moveX = page * -800;
+        $("ul.img-wrap").css("transform", `translateX(${moveX}px)`);
+
+        // 改變白色的指示點
+        $(".slider-dots li")
+          .eq(page)
+          .css("background", "#fff")
+          .siblings()
+          .css("background", "transparent");
+      });
+
+      function startInterval() {
+        myInterval = setInterval(() => {
+          page++;
+          console.log("btn-right-area clicked", page);
+          // if (page >= 5) page = 0;
+          console.log("btn-right-area clicked new page:", page);
+          const moveX = page * -800;
+          $("ul.img-wrap")
+            .css("transition", "0.5s")
+            .css("transform", `translateX(${moveX}px)`);
+
+          // 改變白色的指示點
+          $(".slider-dots li")
+            .eq(page === 5 ? 0 : page)
+            .css("background", "#fff")
+            .siblings()
+            .css("background", "transparent");
+        }, 1500);
+      }
+
+      $("ul.img-wrap").on("transitionend", function () {
+        console.log("transitionend");
+        if (page >= 5) {
+          $("ul.img-wrap")
+            .css("transition", "none")
+            .css("transform", `translateX(0px)`);
+          page = 0;
+        }
+      });
+
+      startInterval();
+
+      $(".wrap").hover(
+        function () {
+          clearInterval(myInterval);
+        },
+        function () {
+          startInterval();
+        }
+      );
     </script>
   </body>
 </html>
